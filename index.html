@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones IA para optimizar procesos de selección</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-particles"></div>
+
+    <main class="app-container">
+        <!-- ENCABEZADO CON LOGO CENTRADO -->
+        <header class="app-header">
+            <div class="header-left">
+                <button id="btn-menu" class="glow-btn">
+                    <span class="icon">&#9776;</span> MENÚ
+                </button>
+            </div>
+            <div class="header-center">
+                <img src="assets/images/logo.jpg" alt="Universidad de Cundinamarca" class="header-logo" onerror="this.style.display='none'">
+            </div>
+            <div class="header-right">
+                <div class="nav-controls">
+                    <button id="btn-prev" class="glow-btn nav-arrow" disabled>&#9664;</button>
+                    <div id="progress-indicator" class="progress-indicator">PORTADA</div>
+                    <button id="btn-next" class="glow-btn nav-arrow">&#9654;</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="menu-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h2 class="serif">Contenido del ODC</h2>
+                    <button id="btn-close-menu" class="close-btn">&times;</button>
+                </div>
+                <div id="menu-grid" class="menu-grid"></div>
+            </div>
+        </div>
+
+        <!-- PORTADA -->
+        <section id="view-cover" class="view-section active fade-in">
+            <div class="content-panel left-panel">
+                <div class="tag cyan-tag">OBJETO DIGITAL DE CONOCIMIENTO</div>
+                <h1 class="serif title-main">Soluciones IA para optimizar los procesos de selección de personal.</h1>
+                <div class="cover-info">
+                    <div class="info-block">
+                        <span class="orange-label">Integrantes:</span>
+                        <p>Carlos Alberto Puentes García.<br>Wilmar Encisar Barragán Baracaldo.</p>
+                    </div>
+                    <div class="info-block">
+                        <span class="orange-label">Programa académico:</span>
+                        <p>Especialización en Inteligencia Artificial.</p>
+                    </div>
+                    <div class="info-block">
+                        <span class="orange-label">Institución:</span>
+                        <p>Universidad de Cundinamarca.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="avatar-panel right-panel">
+                <div class="avatar-container">
+                    <div class="avatar-placeholder" id="placeholder-cover">
+                        <p style="margin-bottom:10px;">VIDEO NO ENCONTRADO</p>
+                        <p style="font-size: 0.75rem; margin-bottom: 20px;">Falta el archivo: assets/avatars/portada.mp4</p>
+                        <label for="upload-cover" class="glow-btn upload-btn">&#128194; Subir Video Local</label>
+                        <input type="file" id="upload-cover" class="file-input" accept="video/mp4">
+                    </div>
+                    <video id="video-cover" class="avatar-video" loop muted playsinline>
+                        <source src="assets/avatars/portada.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-controls">
+                        <button class="ctrl-btn btn-play" data-target="video-cover" title="Reproducir / Pausar">&#9654;</button>
+                        <button class="ctrl-btn btn-mute" data-target="video-cover" title="Silenciar / Activar Sonido">&#128263;</button>
+                        <input type="range" class="vol-slider" data-target="video-cover" min="0" max="1" step="0.05" value="0" title="Volumen">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULOS NORMALES -->
+        <section id="view-module" class="view-section hidden fade-in">
+            <div class="content-panel left-panel module-content-wrapper">
+                <header class="module-header" id="mod-header-container">
+                    <div id="mod-category" class="tag orange-tag">CATEGORÍA</div>
+                    <h2 id="mod-title" class="serif title-module">Título del Módulo</h2>
+                </header>
+                <div id="mod-body" class="module-body scrollable-content"></div>
+            </div>
+            <div class="avatar-panel right-panel">
+                <div class="avatar-container">
+                    <div class="avatar-placeholder" id="placeholder-module">
+                        <p style="margin-bottom:10px;">VIDEO NO ENCONTRADO</p>
+                        <p id="missing-file-name" style="font-size: 0.75rem; margin-bottom: 20px;"></p>
+                        <label for="upload-module" class="glow-btn upload-btn">&#128194; Subir Video Local</label>
+                        <input type="file" id="upload-module" class="file-input" accept="video/mp4">
+                    </div>
+                    <video id="video-module" class="avatar-video" loop muted playsinline>
+                        <source id="mod-video-source" src="" type="video/mp4">
+                    </video>
+                    <div class="video-controls">
+                        <button class="ctrl-btn btn-play" data-target="video-module" title="Reproducir / Pausar">&#9654;</button>
+                        <button class="ctrl-btn btn-mute" data-target="video-module" title="Silenciar / Activar Sonido">&#128263;</button>
+                        <input type="range" class="vol-slider" data-target="video-module" min="0" max="1" step="0.05" value="0" title="Volumen">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISTA CUESTIONARIO (MÓDULO DE EVALUACIÓN) -->
+        <section id="view-quiz" class="view-section hidden fade-in">
+            <div class="content-panel quiz-full-panel">
+                <div class="quiz-header-top">
+                    <h3 id="quiz-question-num" class="quiz-num">Pregunta 1 de 10</h3>
+                    <button id="quiz-close-btn" class="quiz-close-icon" title="Cerrar / Salir al Menú">&times;</button>
+                </div>
+                <h2 id="quiz-question-title" class="serif quiz-title">Título de la Pregunta</h2>
+                <p id="quiz-question-text" class="quiz-text">Texto de la pregunta...</p>
+
+                <div class="quiz-options-container">
+                    <label class="quiz-option-card" id="card-true">
+                        <input type="radio" name="quiz-ans" value="true" id="radio-true">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-label-text">Verdadero</span>
+                    </label>
+                    <label class="quiz-option-card" id="card-false">
+                        <input type="radio" name="quiz-ans" value="false" id="radio-false">
+                        <span class="custom-checkbox"></span>
+                        <span class="option-label-text">Falso</span>
+                    </label>
+                </div>
+
+                <div id="quiz-feedback" class="quiz-feedback hidden" style="margin-bottom: 20px;"></div>
+                
+                <div class="quiz-controls" style="display: flex; gap: 15px; margin-top: 10px;">
+                    <button id="quiz-btn-prev" class="glow-btn" style="display:none;">&#9664; Anterior</button>
+                    <button id="quiz-btn-next" class="glow-btn">Siguiente &#9654;</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/modules.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
