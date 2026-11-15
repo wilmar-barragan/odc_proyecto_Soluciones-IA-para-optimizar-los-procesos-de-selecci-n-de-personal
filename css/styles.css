@@ -18,7 +18,7 @@
 body { background-color: var(--navy-bg); color: var(--white); font-family: var(--font-sans); overflow: hidden; }
 
 .bg-particles {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
     background-image: radial-gradient(circle at 15% 50%, rgba(22, 141, 199, 0.15) 0%, transparent 50%),
                       radial-gradient(circle at 85% 30%, rgba(98, 217, 245, 0.1) 0%, transparent 50%);
     z-index: -1;
@@ -34,7 +34,7 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
 .cyan-tag { background: rgba(98, 217, 245, 0.1); border: 1px solid var(--cyan-glow); color: var(--cyan-glow); }
 .orange-tag { background: rgba(245, 166, 35, 0.1); border: 1px solid var(--orange-highlight); color: var(--orange-highlight); margin-bottom: 10px; font-size: 0.75rem; border: none; padding: 0; font-weight: 700; letter-spacing: 1.5px;}
 
-.app-container { display: flex; flex-direction: column; height: 100vh; padding: 20px 40px; }
+.app-container { display: flex; flex-direction: column; height: 100vh; height: 100dvh; padding: 20px 40px; }
 
 /* ENCABEZADO */
 .app-header { display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 20px; }
@@ -48,7 +48,7 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
     display: flex; 
     flex: 1; 
     gap: 40px; 
-    height: calc(100vh - 130px); 
+    height: calc(100vh - 130px); height: calc(100dvh - 130px); 
     align-items: center; 
 }
 .view-section.hidden { display: none; }
@@ -77,10 +77,19 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
 .progress-indicator { color: var(--gray-blue); font-weight: 600; font-size: 0.9rem; letter-spacing: 2px; }
 
 /* AVATAR */
+.avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-height: 72vh;
+}
 .avatar-container {
     position: relative; 
-    height: 100%; 
-    max-height: 72vh; 
+    flex: 1;
+    min-height: 0;
+    max-height: calc(72vh - 28px); 
     aspect-ratio: 9 / 16; 
     width: auto; 
     flex-shrink: 0;
@@ -181,7 +190,7 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
 .intro-card-text { color: #C0C8D0; font-size: 0.95rem; line-height: 1.6; }
 
 /* MODAL */
-.modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 21, 46, 0.9); backdrop-filter: blur(8px); z-index: 100; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.3s; }
+.modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh; background: rgba(0, 21, 46, 0.9); backdrop-filter: blur(8px); z-index: 100; display: flex; justify-content: center; align-items: center; opacity: 1; transition: opacity 0.3s; }
 .modal.hidden { opacity: 0; pointer-events: none; }
 .modal-content { width: 90%; max-width: 1200px; height: 85vh; background: var(--navy-sec); border: 1px solid var(--cyan-glow); border-radius: 16px; padding: 30px; display: flex; flex-direction: column; }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;}
@@ -196,3 +205,136 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
 
 .fade-in { animation: fadeIn 0.5s ease-in-out forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+/* ========================================================
+   MEDIA QUERIES - DISEÑO RESPONSIVO (TABLETS Y MÓVILES)
+   ======================================================== */
+
+@media (max-width: 1024px) {
+    /* Reducir márgenes y paddings generales */
+    .app-container { padding: 15px 20px; }
+    
+    /* El header se reacomoda: Logo y menú arriba, navegación abajo */
+    .app-header { flex-wrap: wrap; height: auto; margin-bottom: 15px; }
+    .header-left { flex: 0 0 20%; order: 1; justify-content: flex-start; }
+    .header-center { flex: 0 0 60%; order: 2; justify-content: center; }
+    .header-right { flex: 0 0 100%; order: 3; justify-content: center; margin-top: 10px; }
+    .nav-controls { width: 100%; justify-content: center; gap: 15px; }
+    
+    /* Paneles en columna: Avatar arriba (para inmediatez visual), Texto abajo */
+    .view-section { 
+        flex-direction: column; 
+        gap: 20px; 
+        /* Restamos espacio para el header que ahora ocupa 2 líneas */
+        height: calc(100vh - 160px); 
+        height: calc(100dvh - 160px);
+        align-items: stretch;
+    }
+    
+    .right-panel { 
+        flex: 0 0 35vh; 
+        max-height: 35vh; 
+        width: 100%; 
+        order: 1; /* El Avatar de IA primero */
+        justify-content: center;
+    }
+    
+    .left-panel { 
+        flex: 1; 
+        max-height: none; 
+        width: 100%; 
+        order: 2; /* Texto a continuación, con scroll nativo integrado */
+    }
+    
+    .avatar-container {
+        height: 100%;
+        max-height: 35vh;
+        aspect-ratio: 9 / 16;
+        margin: 0 auto;
+    }
+    
+    .video-controls {
+        width: 90%;
+        bottom: 10px;
+        padding: 8px 12px;
+    }
+
+    /* Ajustes tipográficos para encajar en tablet/móvil */
+    .title-main { font-size: 1.8rem; margin: 0.5rem 0; }
+    .title-module { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .orange-label { font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .mod1-image-container { max-height: 25vh; min-height: 120px; border-radius: 12px; }
+    
+    /* Adaptación del Cuestionario interactivo */
+    .quiz-title { font-size: 1.5rem; }
+    .quiz-text { font-size: 0.95rem; margin-bottom: 1rem; }
+    .quiz-options-container { flex-direction: column; gap: 12px; }
+    .quiz-option-card { padding: 12px 20px; }
+    .quiz-full-panel { overflow-y: auto; justify-content: flex-start; padding-top: 5px; }
+
+    /* Adaptación del Menú Modal */
+    .modal-content { width: 95%; height: 90vh; padding: 20px; }
+    .menu-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+
+/* Teléfonos inteligentes (Modo Portarretrato) */
+@media (max-width: 480px) {
+    .app-container { padding: 10px 15px; }
+    .header-logo { max-height: 40px; }
+    
+    .glow-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+    .nav-controls { gap: 8px; }
+    .progress-indicator { font-size: 0.75rem; letter-spacing: 1px; }
+
+    /* Achicamos ligeramente el avatar para dejar más espacio al texto en pantallas mini */
+    .right-panel { flex: 0 0 30vh; max-height: 30vh; }
+    .avatar-container { max-height: 30vh; }
+
+    .title-main { font-size: 1.4rem; }
+    .intro-card { padding: 15px; margin-bottom: 15px; }
+    .intro-card-title { font-size: 1rem; margin-bottom: 8px; }
+    .intro-icon { font-size: 1rem; padding: 5px 8px; margin-bottom: 8px; }
+    .mod1-paragraph { font-size: 0.9rem; line-height: 1.5; }
+}
+
+.avatar-citation {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--gray-blue);
+    text-align: center;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.full-width-panel {
+    flex: 0 0 100% !important;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    .avatar-wrapper {
+        max-height: 35vh;
+    }
+    .avatar-container {
+        max-height: calc(35vh - 24px);
+    }
+    .full-width-panel {
+        flex: 1 !important;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-wrapper {
+        max-height: 30vh;
+    }
+    .avatar-container {
+        max-height: calc(30vh - 22px);
+    }
+    .avatar-citation {
+        font-size: 0.72rem;
+        margin-top: 4px;
+    }
+}

@@ -408,7 +408,7 @@ const modulesData = [
                     <li class="reference-item">Skondras, P., Zervas, P., & Tzimas, G. (2025). Zero-Shot Resume–Job Matching with LLMs via Structured Prompting and Semantic Embeddings. <i>Electronics</i>.</li>
                     <li class="reference-item">Vyshotravka, D. (2025). Smart Application for Recruiting Based on Natural Language Processing Methods... <i>IJISA</i>.</li>
                     <li class="reference-item">Xu, Y., et al. (2026). Adaptive talent aligner: A large language model with dynamic hierarchical analysis and bias-corrective memory pool... <i>Information Processing & Management</i>.</li>
-                    <li class="reference-item">Chairoon, W., Srivatanakul, S., & Pornsakulvanich, V. (2025). Digital Workforce Matching... <i>Journal of Current Science and Technology</i>.</li>
+                    <li class="reference-item">Chairoon, Srivatanakul, & Pornsakulvanich. (2025). Digital Workforce Matching... <i>Journal of Current Science and Technology</i>.</li>
                     <li class="reference-item">Chnaida, N., et al. (2025). How to optimize recruitment with artificial intelligence: A case study on resume analysis and matching with Shneider Al Recruit. <i>Proceedings on Engineering Sciences</i>.</li>
                 </ul>
             </div>
@@ -417,6 +417,29 @@ const modulesData = [
     },
     {
         id: 15,
+        category: "METADATOS",
+        title: "Metadatos del ODC",
+        headerStyle: "left",
+        hideAvatar: true,
+        section: "Información técnica y académica del material:",
+        content: `
+            <div class="intro-card" style="padding: 18px 24px;">
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Área de Conocimiento:</span> Ingeniería de Software · Educación digital</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Nombre del Material:</span> Soluciones IA para optimizar los procesos de selección de personal</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Tipo de Recurso:</span> Objeto Digital de Conocimiento (ODC) · Trabajo de grado</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Autores:</span> Carlos Alberto Puentes García · Wilmar Encisar Barragán Baracaldo</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Diseño y Desarrollo:</span> Carlos Alberto Puentes García · Wilmar Encisar Barragán Baracaldo</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Imágenes:</span> Creados con Flow-Gemini</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Sonidos y Voces:</span> Creados con Flow-Gemini</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Fecha de Creación:</span> Noviembre 2026</p>
+                <p class="mod1-paragraph" style="margin-bottom: 10px;"><span class="mod1-highlight">Nivel Educativo:</span> Postgrado (Especialización en Inteligencia Artificial)</p>
+                <p class="mod1-paragraph"><span class="mod1-highlight">Institución:</span> Universidad de Cundinamarca · Oficina de Educación Virtual y a Distancia</p>
+            </div>
+        `,
+        avatarVideo: ""
+    },
+    {
+        id: 16,
         category: "EVALUACIÓN DE APRENDIZAJE",
         title: "Cuestionario Interactivo ODC",
         headerStyle: "left",

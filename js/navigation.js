@@ -3,6 +3,8 @@ const Navigation = {
         const grid = document.getElementById('menu-grid');
         grid.innerHTML = '';
         const quizIdx = modules.length - 1;
+        const metaIdx = modules.length - 2;
+        const refIdx = modules.length - 3;
         
         for (let i = 1; i < modules.length; i++) {
             const mod = modules[i];
@@ -13,7 +15,9 @@ const Navigation = {
                 card.innerHTML = `<div class="card-num">INICIO</div><div class="card-title">Introducción</div>`;
             } else if (i === quizIdx) {
                 card.innerHTML = `<div class="card-num">EVALUACIÓN</div><div class="card-title">Cuestionario ODC</div>`;
-            } else if (i === quizIdx - 1) {
+            } else if (i === metaIdx) {
+                card.innerHTML = `<div class="card-num">FICHA TÉCNICA</div><div class="card-title">Metadatos del ODC</div>`;
+            } else if (i === refIdx) {
                 card.innerHTML = `<div class="card-num">ANEXO</div><div class="card-title">Referencias</div>`;
             } else {
                 let modNum = i - 1;
@@ -33,6 +37,8 @@ const Navigation = {
         const btnNext = document.getElementById('btn-next');
         const indicator = document.getElementById('progress-indicator');
         const quizIdx = totalModules - 1;
+        const metaIdx = totalModules - 2;
+        const refIdx = totalModules - 3;
 
         btnPrev.disabled = index === 0;
         btnNext.disabled = index === totalModules - 1;
@@ -76,7 +82,9 @@ const Navigation = {
             
             if (index === 1) {
                 indicator.textContent = `INTRODUCCIÓN`;
-            } else if (index === quizIdx - 1) {
+            } else if (index === metaIdx) {
+                indicator.textContent = `METADATOS`;
+            } else if (index === refIdx) {
                 indicator.textContent = `REFERENCIAS`;
             } else {
                 let modNum = index - 1;
@@ -107,10 +115,21 @@ const Navigation = {
             contentHTML += modData.content;
             document.getElementById('mod-body').innerHTML = contentHTML;
 
-            const missingFile = document.getElementById('missing-file-name');
-            if(missingFile) missingFile.textContent = `Falta el archivo: ${modData.avatarVideo}`;
+            const avatarPanel = document.getElementById('module-avatar-panel');
+            const leftPanel = document.getElementById('module-left-panel');
 
-            this.handleVideoLoad('video-module', modData.avatarVideo, 'placeholder-module');
+            if (modData.hideAvatar) {
+                if (avatarPanel) avatarPanel.style.display = 'none';
+                if (leftPanel) leftPanel.classList.add('full-width-panel');
+                this.pauseVideo('video-module');
+            } else {
+                if (avatarPanel) avatarPanel.style.display = '';
+                if (leftPanel) leftPanel.classList.remove('full-width-panel');
+                const missingFile = document.getElementById('missing-file-name');
+                if(missingFile) missingFile.textContent = `Falta el archivo: ${modData.avatarVideo}`;
+                this.handleVideoLoad('video-module', modData.avatarVideo, 'placeholder-module');
+            }
+
             this.pauseVideo('video-cover');
         }
     },
