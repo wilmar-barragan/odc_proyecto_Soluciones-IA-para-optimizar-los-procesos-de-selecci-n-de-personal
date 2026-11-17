@@ -2,9 +2,6 @@ const Navigation = {
     initMenu(modules, currentIdx, onSelectCallback) {
         const grid = document.getElementById('menu-grid');
         grid.innerHTML = '';
-        const quizIdx = modules.length - 1;
-        const metaIdx = modules.length - 2;
-        const refIdx = modules.length - 3;
         
         for (let i = 1; i < modules.length; i++) {
             const mod = modules[i];
@@ -13,12 +10,14 @@ const Navigation = {
             
             if (i === 1) {
                 card.innerHTML = `<div class="card-num">INICIO</div><div class="card-title">Introducción</div>`;
-            } else if (i === quizIdx) {
+            } else if (mod.category === "EVALUACIÓN DE APRENDIZAJE") {
                 card.innerHTML = `<div class="card-num">EVALUACIÓN</div><div class="card-title">Cuestionario ODC</div>`;
-            } else if (i === metaIdx) {
+            } else if (mod.category === "METADATOS") {
                 card.innerHTML = `<div class="card-num">FICHA TÉCNICA</div><div class="card-title">Metadatos del ODC</div>`;
-            } else if (i === refIdx) {
+            } else if (mod.category === "BIBLIOGRAFÍA") {
                 card.innerHTML = `<div class="card-num">ANEXO</div><div class="card-title">Referencias</div>`;
+            } else if (mod.category === "CONCLUSIONES") {
+                card.innerHTML = `<div class="card-num">MÓDULO 12</div><div class="card-title">${mod.title}</div>`;
             } else {
                 let modNum = i - 1;
                 card.innerHTML = `<div class="card-num">MÓDULO ${modNum < 10 ? '0'+modNum : modNum}</div><div class="card-title">${mod.title}</div>`;
@@ -36,9 +35,10 @@ const Navigation = {
         const btnPrev = document.getElementById('btn-prev');
         const btnNext = document.getElementById('btn-next');
         const indicator = document.getElementById('progress-indicator');
-        const quizIdx = totalModules - 1;
-        const metaIdx = totalModules - 2;
-        const refIdx = totalModules - 3;
+        const quizIdx = data.findIndex(m => m.category === "EVALUACIÓN DE APRENDIZAJE");
+        const metaIdx = data.findIndex(m => m.category === "METADATOS");
+        const refIdx = data.findIndex(m => m.category === "BIBLIOGRAFÍA");
+        const conclIdx = data.findIndex(m => m.category === "CONCLUSIONES");
 
         btnPrev.disabled = index === 0;
         btnNext.disabled = index === totalModules - 1;
@@ -60,6 +60,8 @@ const Navigation = {
             viewCover.classList.remove('hidden');
             viewCover.classList.add('fade-in');
             indicator.textContent = "PORTADA";
+            const coverPanel = document.querySelector(".cover-left-panel");
+            if (coverPanel) coverPanel.scrollTop = 0;
             this.handleVideoLoad('video-cover', 'assets/avatars/portada.mp4', 'placeholder-cover');
             this.pauseVideo('video-module');
             
@@ -86,6 +88,8 @@ const Navigation = {
                 indicator.textContent = `METADATOS`;
             } else if (index === refIdx) {
                 indicator.textContent = `REFERENCIAS`;
+            } else if (index === conclIdx) {
+                indicator.textContent = `MÓDULO 12 / 12`;
             } else {
                 let modNum = index - 1;
                 indicator.textContent = `MÓDULO ${modNum < 10 ? '0'+modNum : modNum} / 12`;
@@ -113,7 +117,18 @@ const Navigation = {
                 contentHTML += `<span class="orange-label ${centerClass}">${modData.section}</span>`;
             }
             contentHTML += modData.content;
-            document.getElementById('mod-body').innerHTML = contentHTML;
+            if (modData.quizQuestion) {
+                contentHTML += `
+                    <div class="module-quiz-trigger-bar">
+                        <button type="button" class="glow-btn module-quiz-trigger-btn" onclick="window.triggerCurrentModuleQuiz()">
+                            &#10067; Responder pregunta del módulo
+                        </button>
+                    </div>
+                `;
+            }
+            const modBodyEl = document.getElementById('mod-body');
+            modBodyEl.innerHTML = contentHTML;
+            modBodyEl.scrollTop = 0;
 
             const avatarPanel = document.getElementById('module-avatar-panel');
             const leftPanel = document.getElementById('module-left-panel');
@@ -177,71 +192,116 @@ const Navigation = {
 
 const QuizManager = {
     currentQuestionIndex: 0,
+    answeredCorrectly: {},
     questions: [
         {
             num: "Pregunta 1",
-            title: "Eficiencia del Filtrado Semántico vs. Léxico Tradicional",
-            text: "Los sistemas tradicionales de seguimiento de candidatos (ATS) basados en coincidencia exacta de palabras clave pueden llegar a descartar hasta un 15% de perfiles calificados por desajustes terminológicos o sinónimos.",
-            answer: "true"
+            title: "Pregunta 1",
+            text: "Los sistemas tradicionales ATS basados en palabras clave exactas descartan hasta un 15% de candidatos idóneos por discrepancias terminológicas.",
+            answer: "true",
+            justification: "Los algoritmos léxicos sufren de rigidez sintáctica, mientras que los modelos semánticos SBERT/DeBERTa elevan la concordancia a valores superiores a 0.88 (Ajjam & Al-Raweshidy, 2026)."
         },
         {
             num: "Pregunta 2",
-            title: "Análisis de Personalidad con Expresiones Regulares",
-            text: "En la fase de parsing y procesamiento de información de HVs, las expresiones regulares (RegEx) se utilizan para analizar el perfil psicológico y los rasgos de personalidad del candidato.",
-            answer: "false"
+            title: "Pregunta 2",
+            text: "Las Expresiones Regulares (RegEx) se utilizan en el parsing de CVs para medir los rasgos de personalidad Big Five.",
+            answer: "false",
+            justification: "RegEx se emplea para la extracción determinista de datos de contacto; el perfilamiento psicológico se realiza mediante clasificadores LLM y modelos psicométricos (Myneni & Quadhari, 2025)."
         },
         {
             num: "Pregunta 3",
-            title: "Condensación Extractiva de Hojas de Vida",
-            text: "El uso de resúmenes de texto mediante modelos de condensación extractiva como Reduction o BART previo al filtrado de HVs ayuda a eliminar ruido informativo sin perder las competencias técnicas clave.",
-            answer: "true"
+            title: "Pregunta 3",
+            text: "Los resúmenes extractivos de CVs (TextRank/SBERT) mantienen una precisión superior al 93.8% sin generar alucinaciones.",
+            answer: "true",
+            justification: "La condensación extractiva conserva las oraciones y competencias originales del texto sin inventar información (El-Deeb, Abdelmoez, & El-Bendary, 2025)."
         },
         {
             num: "Pregunta 4",
-            title: "Proyección Vectorial en Redes Siamesas",
-            text: "La arquitectura de Redes Neuronales Siamesas permite proyectar tanto la hoja de vida como la descripción del empleo en un mismo espacio vectorial para calcular su grado de alineación mediante similitud del coseno.",
-            answer: "true"
+            title: "Pregunta 4",
+            text: "Las Redes Neuronales Siamesas proyectan el CV y la vacante en un espacio vectorial común de 768 dimensiones.",
+            answer: "true",
+            justification: "Las dos ramas gemelas comparten pesos para calcular la similitud coseno mediante funciones Triplet Loss (Vyshotravka & Smelyakov, 2025)."
         },
         {
             num: "Pregunta 5",
-            title: "Redes Secuenciales para Trayectorias Profesionales",
-            text: "En el análisis de trayectorias laborales complejas, las redes neuronales recurrentes GRU y LSTM superan a las cabezas con atención Transformer en la captura de dependencias a largo plazo.",
-            answer: "false"
+            title: "Pregunta 5",
+            text: "Las redes recurrentes LSTM superan a las cabezas Transformer en la captura de dependencias temporales en carreras profesionales.",
+            answer: "false",
+            justification: "Las evaluaciones demuestran que las cabezas Transformer superan a GRU y LSTM con un MRR de 0.979 y 87.20% de exactitud en Top-100 (Łępicki & Kurek, 2025)."
         },
         {
             num: "Pregunta 6",
-            title: "Mitigación de Alucinaciones con RAG",
-            text: "La integración de un módulo RAG (Retrieval-Augmented Generation) respaldado por bases de datos de conocimientos reduce las alucinaciones de los LLMs y eleva el F1-Score hasta un 92.3% en la clasificación de HVs.",
-            answer: "true"
+            title: "Pregunta 6",
+            text: "La integración RAG reduce alucinaciones y eleva el F1-Score al 92.3% en la clasificación de candidatos.",
+            answer: "true",
+            justification: "La recuperación aumentada inyecta contexto normalizado desde bases de conocimiento estructuradas (Chafi, Kabil, & Kamouss, 2026)."
         },
         {
             num: "Pregunta 7",
-            title: "Regulación de Entrevistas Automatizadas",
-            text: "Los sistemas de entrevistas automatizadas con IA están autorizados por la Ley de Inteligencia Artificial de la Unión Europea para analizar libremente las microexpresiones faciales y el tono emocional del candidato.",
-            answer: "false"
+            title: "Pregunta 7",
+            text: "La ley EU AI Act autoriza el análisis de microexpresiones faciales y tono emocional en entrevistas automatizadas.",
+            answer: "false",
+            justification: "La normativa europea prohíbe el análisis biométrico emocional en selección; los sistemas éticos analizan únicamente el texto semántico (El-Deeb, Abdelmoez, & El-Bendary, 2025)."
         },
         {
             num: "Pregunta 8",
-            title: "Validación Psicométrica Multi-Agente",
-            text: "La arquitectura Multi-Agente con LLMs permiten validar perfiles ocupacionales a gran escala bajo la taxonomía psicométrica RIASEC de Holland con un coeficiente de correlación intraclase (ICC) superior a 0.85.",
-            answer: "true"
+            title: "Pregunta 8",
+            text: "El perfilamiento Multi-Agente con LangGraph valida ocupaciones bajo el modelo RIASEC con un ICC entre 0.87 y 0.98.",
+            answer: "true",
+            justification: "La orquestación de agentes expertos (Psicólogo, Reclutador, Árbitro) alcanza alta estabilidad psicométrica (Han, Luo, Ji, & Kong, 2026)."
         },
         {
             num: "Pregunta 9",
-            title: "Ceguera de Campos e Inmunidad a Sesgos",
-            text: "Omitir los campos de género y raza en la hoja de vida garantiza por sí solo que los Grandes Modelos de Lenguaje (LLMs) no generen recomendaciones discriminatorias.",
-            answer: "false"
+            title: "Pregunta 9",
+            text: "Omitir el género y nombre en un CV elimina por completo los sesgos de los modelos de lenguaje.",
+            answer: "false",
+            justification: "Los LLMs mantienen sesgos implícitos por variables sustitutas, requiriendo un Bias-Corrective Memory Pool con 96.2% de bloqueo (Gelling, Urman, & Hannak, 2025; Xu et al., 2026)."
         },
         {
             num: "Pregunta 10",
-            title: "Principio de Control Humano",
-            text: "El principio de Human-in-the-Loop (HITL) establece que la Inteligencia Artificial toma la decisión final de contratación y el reclutador humano solo firma la oferta.",
-            answer: "false"
+            title: "Pregunta 10",
+            text: "El principio Human-in-the-Loop establece que la IA toma la decisión final de contratación.",
+            answer: "false",
+            justification: "HITL establece que la IA actúa como copiloto explicable (XAI), reservando la decisión final exclusivamente al profesional humano (Dutta, Chatterjee, & Sarkar, 2026)."
         }
     ],
 
-    init() {
+    isQuizCompleted() {
+        for (let i = 0; i < this.questions.length; i++) {
+            if (!this.answeredCorrectly[i]) return false;
+        }
+        return true;
+    },
+
+    resetQuiz() {
         this.currentQuestionIndex = 0;
+        this.answeredCorrectly = {};
+    },
+
+    updateNavigationLocks() {
+        const currentSolved = !!this.answeredCorrectly[this.currentQuestionIndex];
+        const allSolved = this.isQuizCompleted();
+
+        const btnNext = document.getElementById('quiz-btn-next');
+        const continueBtn = document.getElementById('quiz-btn-continue-mod12');
+        const headerBtnNext = document.getElementById('btn-next');
+
+        if (btnNext) {
+            btnNext.disabled = !currentSolved;
+        }
+        if (continueBtn) {
+            continueBtn.disabled = !allSolved;
+        }
+        if (headerBtnNext) {
+            headerBtnNext.disabled = !currentSolved;
+        }
+    },
+
+    init() {
+        if (!this.isQuizCompleted()) {
+            this.currentQuestionIndex = 0;
+            this.answeredCorrectly = {};
+        }
         this.render();
         this.bindEvents();
         
@@ -255,33 +315,64 @@ const QuizManager = {
         
         document.getElementById('quiz-btn-next').addEventListener('click', () => this.nextSubQuestion());
         document.getElementById('quiz-btn-prev').addEventListener('click', () => this.prevSubQuestion());
+        const quizPanelEl = document.querySelector('.quiz-full-panel');
+        if (quizPanelEl) quizPanelEl.scrollTop = 0;
+        this.updateNavigationLocks();
     },
 
     render() {
         const q = this.questions[this.currentQuestionIndex];
+        const alreadySolved = !!this.answeredCorrectly[this.currentQuestionIndex];
+
         document.getElementById('quiz-question-num').textContent = `Pregunta ${this.currentQuestionIndex + 1} de ${this.questions.length}`;
         document.getElementById('quiz-question-title').textContent = q.title;
         document.getElementById('quiz-question-text').textContent = q.text;
 
-        document.querySelectorAll('input[name="quiz-ans"]').forEach(radio => radio.checked = false);
+        document.querySelectorAll('input[name="quiz-ans"]').forEach(radio => {
+            radio.checked = alreadySolved && radio.value === q.answer;
+        });
+
         const fb = document.getElementById('quiz-feedback');
-        fb.className = "quiz-feedback hidden";
-        fb.textContent = "";
+        const justBox = document.getElementById('quiz-justification-box');
+        const justText = document.getElementById('quiz-justification-text');
+
+        if (alreadySolved) {
+            fb.className = "quiz-feedback correct";
+            fb.textContent = this.isQuizCompleted()
+                ? "¡Felicidades! Has completado todas las preguntas correctamente. Ya puedes continuar al Módulo 12."
+                : "¡Correcto! Puedes avanzar a la siguiente pregunta.";
+            if (justBox && justText) {
+                justText.textContent = q.justification || "";
+                justBox.classList.remove('hidden');
+            }
+        } else {
+            fb.className = "quiz-feedback hidden";
+            fb.textContent = "";
+            if (justBox && justText) {
+                justBox.classList.add('hidden');
+                justText.textContent = q.justification || "";
+            }
+        }
         
         const btnPrev = document.getElementById('quiz-btn-prev');
         const btnNext = document.getElementById('quiz-btn-next');
         
-        if(this.currentQuestionIndex > 0) {
+        if (this.currentQuestionIndex > 0) {
             btnPrev.style.display = "inline-block";
         } else {
             btnPrev.style.display = "none";
         }
         
-        if(this.currentQuestionIndex === this.questions.length - 1) {
-            btnNext.textContent = "Finalizar";
+        if (this.currentQuestionIndex === this.questions.length - 1) {
+            btnNext.style.display = "none";
         } else {
+            btnNext.style.display = "inline-block";
             btnNext.innerHTML = "Siguiente &#9654;";
         }
+
+        const quizPanelEl = document.querySelector('.quiz-full-panel');
+        if (quizPanelEl) quizPanelEl.scrollTop = 0;
+        this.updateNavigationLocks();
     },
 
     bindEvents() {
@@ -291,21 +382,43 @@ const QuizManager = {
             radio.parentNode.replaceChild(newRadio, radio);
         });
 
+        const q = this.questions[this.currentQuestionIndex];
+        const alreadySolved = !!this.answeredCorrectly[this.currentQuestionIndex];
         document.querySelectorAll('input[name="quiz-ans"]').forEach(radio => {
+            if (alreadySolved && radio.value === q.answer) {
+                radio.checked = true;
+            }
             radio.addEventListener('change', (e) => {
                 const userVal = e.target.value;
-                const q = QuizManager.questions[QuizManager.currentQuestionIndex];
+                const currentQ = QuizManager.questions[QuizManager.currentQuestionIndex];
                 const fb = document.getElementById('quiz-feedback');
+                const justBox = document.getElementById('quiz-justification-box');
+                const justText = document.getElementById('quiz-justification-text');
                 
                 fb.classList.remove('hidden', 'correct', 'incorrect');
 
-                if (userVal === q.answer) {
+                if (userVal === currentQ.answer) {
+                    QuizManager.answeredCorrectly[QuizManager.currentQuestionIndex] = true;
                     fb.classList.add('correct');
-                    fb.textContent = "¡Correcto! Puedes avanzar a la siguiente pregunta.";
+                    if (QuizManager.isQuizCompleted()) {
+                        fb.textContent = "¡Felicidades! Has completado todas las preguntas correctamente. Ya puedes continuar al Módulo 12.";
+                    } else {
+                        fb.textContent = "¡Correcto! Puedes avanzar a la siguiente pregunta.";
+                    }
+                    if (justBox && justText && currentQ.justification) {
+                        justText.textContent = currentQ.justification;
+                        justBox.classList.remove('hidden');
+                    }
                 } else {
+                    QuizManager.answeredCorrectly[QuizManager.currentQuestionIndex] = false;
                     fb.classList.add('incorrect');
                     fb.textContent = "Incorrecto. Vuelve a intentarlo hasta lograr la respuesta correcta.";
+                    if (justBox) {
+                        justBox.classList.add('hidden');
+                    }
                 }
+
+                QuizManager.updateNavigationLocks();
             });
         });
     },
@@ -319,14 +432,15 @@ const QuizManager = {
     },
 
     nextSubQuestion() {
-        const q = this.questions[this.currentQuestionIndex];
-        const selected = document.querySelector('input[name="quiz-ans"]:checked');
         const fb = document.getElementById('quiz-feedback');
         
-        if (!selected || selected.value !== q.answer) {
+        if (!this.answeredCorrectly[this.currentQuestionIndex]) {
             fb.classList.remove('hidden', 'correct', 'incorrect');
             fb.classList.add('incorrect');
             fb.textContent = "Debes seleccionar la respuesta correcta antes de avanzar.";
+            const quizPanelEl = document.querySelector('.quiz-full-panel');
+        if (quizPanelEl) quizPanelEl.scrollTop = 0;
+        this.updateNavigationLocks();
             return;
         }
 
@@ -334,11 +448,13 @@ const QuizManager = {
             this.currentQuestionIndex++;
             this.render();
             this.bindEvents();
-        } else {
+        } else if (this.isQuizCompleted()) {
             fb.classList.remove('hidden', 'correct', 'incorrect');
             fb.classList.add('correct');
-            fb.textContent = "¡Felicidades! Has completado el cuestionario del ODC de manera exitosa.";
-            document.getElementById('quiz-btn-next').style.display = "none";
+            fb.textContent = "¡Felicidades! Has completado todas las preguntas correctamente. Haz clic en 'Continuar al Módulo 12' o en la X superior.";
+            const quizPanelEl = document.querySelector('.quiz-full-panel');
+        if (quizPanelEl) quizPanelEl.scrollTop = 0;
+        this.updateNavigationLocks();
         }
     },
 
@@ -347,7 +463,6 @@ const QuizManager = {
             this.currentQuestionIndex--;
             this.render();
             this.bindEvents();
-            document.getElementById('quiz-btn-next').style.display = "inline-block";
         }
     }
 };

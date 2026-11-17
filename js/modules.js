@@ -39,6 +39,12 @@ const modulesData = [
         id: 2,
         category: "PROCESAMIENTO MASIVO",
         title: "Módulo 01: Flujo Laboral",
+        quizQuestion: {
+            title: "Eficiencia del Filtrado Semántico vs. Léxico Tradicional",
+            text: "Los sistemas tradicionales de seguimiento de candidatos (ATS) basados en coincidencia exacta de palabras clave pueden llegar a descartar hasta un 15% de perfiles calificados por desajustes terminológicos o sinónimos.",
+            answer: "true",
+            justification: "Los filtros léxicos tradicionales exigen coincidencias exactas de palabras clave; cuando un candidato emplea sinónimos o expresiones equivalentes, el sistema lo descarta injustamente (hasta un 15% de perfiles idóneos), problema que se resuelve con embeddings contextuales como SBERT o DeBERTa."
+        },
         headerStyle: "left",
         section: "",
         content: `
@@ -67,6 +73,12 @@ const modulesData = [
         id: 3,
         category: "ESTRUCTURACIÓN DE DATOS",
         title: "Módulo 02: Ingesta y Parsing Multi-Formato",
+        quizQuestion: {
+            title: "Análisis de Personalidad con Expresiones Regulares",
+            text: "En la fase de parsing y procesamiento de información de HVs, las expresiones regulares (RegEx) se utilizan para analizar el perfil psicológico y los rasgos de personalidad del candidato.",
+            answer: "false",
+            justification: "Es falso porque las expresiones regulares (RegEx) y SpaCy NER se utilizan exclusivamente para extraer y estructurar datos objetivos y sensibles (correos, teléfonos, empresas, cargos y certificaciones), mientras que el análisis psicométrico o de personalidad requiere modelos de lenguaje especializados y marcos como RIASEC o Big Five."
+        },
         headerStyle: "left",
         section: "Ingesta: Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -95,6 +107,12 @@ const modulesData = [
         id: 4,
         category: "INTELIGENCIA DE MERCADO",
         title: "Módulo 03: Crawling del Mercado y Ofertas",
+        quizQuestion: {
+            title: "Estandarización de Ofertas con Taxonomías Globales",
+            text: "El crawling inteligente del mercado permite alinear automáticamente las descripciones de cargo con taxonomías globales como ESCO y O*NET, reduciendo en un 70% el tiempo de publicación de vacantes.",
+            answer: "true",
+            justification: "Los crawlers y scrapers inteligentes capturan tendencias del mercado en tiempo real y normalizan los perfiles de cargo con estándares internacionales (ESCO y O*NET), agilizando en un 70% la redacción y publicación de vacantes."
+        },
         headerStyle: "left",
         section: "Puntos Clave y Métricas Operativas:",
         content: `
@@ -123,6 +141,12 @@ const modulesData = [
         id: 5,
         category: "BÚSQUEDA VECTORIAL RAG",
         title: "Módulo 04: Filtrado Semántico Continuo",
+        quizQuestion: {
+            title: "Mitigación de Alucinaciones con RAG y FAISS",
+            text: "La integración de un módulo RAG (Retrieval-Augmented Generation) respaldado por bases vectoriales FAISS reduce las alucinaciones de los LLMs y eleva el F1-Score hasta un 92.3% en la clasificación de HVs.",
+            answer: "true",
+            justification: "Al anclar las respuestas del modelo en índices vectoriales densos (FAISS) con información verificada mediante RAG, se evitan inferencias inventadas (alucinaciones) y se alcanza una precisión del 94.2% con un F1-Score del 92.3%."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -151,6 +175,12 @@ const modulesData = [
         id: 6,
         category: "REDES SIAMESAS",
         title: "Módulo 05: Matching de Alta Precisión",
+        quizQuestion: {
+            title: "Proyección Vectorial en Redes Siamesas",
+            text: "La arquitectura de Redes Neuronales Siamesas permite proyectar tanto la hoja de vida como la descripción del empleo en un mismo espacio vectorial para calcular su grado de alineación mediante similitud del coseno.",
+            answer: "true",
+            justification: "Las Redes Siamesas emplean dos ramas Transformer con pesos compartidos que codifican tanto el currículo como la oferta laboral en vectores densos de 768 dimensiones, permitiendo medir su compatibilidad semántica mediante la distancia o similitud del coseno."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -179,6 +209,12 @@ const modulesData = [
         id: 7,
         category: "EVALUACIÓN ADAPTATIVA",
         title: "Módulo 06: Entrevistas Automatizadas",
+        quizQuestion: {
+            title: "Regulación de Entrevistas Automatizadas",
+            text: "Los sistemas de entrevistas automatizadas con IA están autorizados por la Ley de Inteligencia Artificial de la Unión Europea para analizar libremente las microexpresiones faciales y el tono emocional del candidato.",
+            answer: "false",
+            justification: "Es falso porque la regulación vigente (como el EU AI Act) y las políticas de gobernanza ética prohíben el reconocimiento biométrico facial o emocional en entornos laborales; por ello, las entrevistas automatizadas evalúan únicamente el contenido semántico textual y verbal."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -207,6 +243,12 @@ const modulesData = [
         id: 8,
         category: "TAXONOMÍA RIASEC & BIG FIVE",
         title: "Módulo 07: Perfilamiento Multi Agente",
+        quizQuestion: {
+            title: "Validación Psicométrica Multi-Agente",
+            text: "La arquitectura Multi-Agente con LLMs permite validar perfiles ocupacionales a gran escala bajo la taxonomía psicométrica RIASEC con un coeficiente de correlación intraclase (ICC) superior a 0.85.",
+            answer: "true",
+            justification: "La colaboración entre agentes especializados (psicólogo, especialista en RR.HH. y árbitro) orquestados con LangGraph permite evaluar 1.636 ocupaciones bajo la taxonomía RIASEC con alta consistencia estadística (ICC entre 0.87 y 0.98)."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -235,6 +277,12 @@ const modulesData = [
         id: 9,
         category: "GRAPH RAG & NEO4J",
         title: "Módulo 08: Grafos Ocupacionales",
+        quizQuestion: {
+            title: "Modelado Temporal con Grafos de Conocimiento",
+            text: "Los grafos de conocimiento temporal (TKG-IR) en Neo4j interconectan habilidades, experiencia y formación para impulsar la movilidad interna, reduciendo hasta un 55% los costos de adquisición de talento.",
+            answer: "true",
+            justification: "Los grafos de conocimiento temporal (TKG-IR) en Neo4j modelan relaciones dinámicas entre competencias, cargos y formación, facilitando rutas de movilidad interna que reducen en un 55% los costos de contratación externa."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -263,6 +311,12 @@ const modulesData = [
         id: 10,
         category: "EQUIDAD ALGORÍTMICA",
         title: "Módulo 09: Gobernanza y Anti sesgos",
+        quizQuestion: {
+            title: "Ceguera de Campos e Inmunidad a Sesgos",
+            text: "Omitir los campos de género y raza en la hoja de vida garantiza por sí solo que los Grandes Modelos de Lenguaje (LLMs) no generen recomendaciones discriminatorias.",
+            answer: "false",
+            justification: "Es falso porque los LLMs pueden inferir atributos protegidos a partir de variables indirectas (como nombres, instituciones educativas o ubicaciones); por ello se requieren auditorías de perturbación y mecanismos activos como un bias-corrective memory pool con Inferencia Bayesiana de Ensambles (EBI)."
+        },
         headerStyle: "left",
         section: "Métricas y puntos operativos clave",
         content: `
@@ -291,6 +345,12 @@ const modulesData = [
         id: 11,
         category: "TRANSPARENCIA ALGORÍTMICA",
         title: "Módulo 10: Explicabilidad (XAI) & HITL",
+        quizQuestion: {
+            title: "Principio de Control Humano (HITL)",
+            text: "El principio de Human-in-the-Loop (HITL) establece que la Inteligencia Artificial toma la decisión final de contratación y el reclutador humano solo firma la oferta.",
+            answer: "false",
+            justification: "Es falso porque el principio Human-in-the-Loop (HITL) establece exactamente lo contrario: la IA actúa exclusivamente como sistema de apoyo y recomendación explicable (SHAP, LIME, AHP), manteniendo la decisión final de contratación en manos del profesional humano."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -319,6 +379,12 @@ const modulesData = [
         id: 12,
         category: "ANALÍTICA PREDICTIVA",
         title: "Módulo 11: Onboarding y Retención",
+        quizQuestion: {
+            title: "Aceleración de Productividad mediante Onboarding Inteligente",
+            text: "Los planes de inducción personalizados diseñados a partir de las brechas detectadas durante la selección logran mejorar en un 38% el tiempo necesario para que el nuevo talento alcance su productividad.",
+            answer: "true",
+            justification: "Al identificar desde el proceso de selección las brechas específicas de habilidades del candidato elegido, se diseña una ruta de onboarding personalizada que acelera en un 38% su curva de adaptación y productividad."
+        },
         headerStyle: "left",
         section: "Aspectos fundamentales e indicadores de rendimiento:",
         content: `
@@ -345,6 +411,15 @@ const modulesData = [
     },
     {
         id: 13,
+        category: "EVALUACIÓN DE APRENDIZAJE",
+        title: "Cuestionario Interactivo ODC",
+        headerStyle: "left",
+        section: "",
+        content: "",
+        avatarVideo: ""
+    },
+    {
+        id: 14,
         category: "CONCLUSIONES",
         title: "Módulo 12: Conclusiones",
         headerStyle: "left",
@@ -382,7 +457,7 @@ const modulesData = [
         avatarVideo: `assets/avatars/modulo 12.mp4`
     },
     {
-        id: 14,
+        id: 15,
         category: "BIBLIOGRAFÍA",
         title: "Referencias",
         headerStyle: "left",
@@ -416,7 +491,7 @@ const modulesData = [
         avatarVideo: `assets/avatars/modulo 13.mp4`
     },
     {
-        id: 15,
+        id: 16,
         category: "METADATOS",
         title: "Metadatos del ODC",
         headerStyle: "left",
@@ -436,15 +511,6 @@ const modulesData = [
                 <p class="mod1-paragraph"><span class="mod1-highlight">Institución:</span> Universidad de Cundinamarca · Oficina de Educación Virtual y a Distancia</p>
             </div>
         `,
-        avatarVideo: ""
-    },
-    {
-        id: 16,
-        category: "EVALUACIÓN DE APRENDIZAJE",
-        title: "Cuestionario Interactivo ODC",
-        headerStyle: "left",
-        section: "",
-        content: "",
         avatarVideo: ""
     }
 ];

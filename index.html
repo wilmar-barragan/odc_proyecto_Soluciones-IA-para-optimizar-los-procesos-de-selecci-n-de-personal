@@ -40,9 +40,63 @@
             </div>
         </div>
 
+        <!-- POP-UP DE PREGUNTA DE VALIDACIÓN POR MÓDULO -->
+        <div id="module-quiz-modal" class="modal hidden">
+            <div class="modal-content popup-quiz-content glass-panel">
+                <div class="modal-header popup-quiz-header">
+                    <div class="popup-quiz-badge" id="popup-quiz-badge">VALIDACIÓN DEL MÓDULO</div>
+                    <button id="btn-close-popup-quiz" class="close-btn popup-close-btn hidden" title="Cerrar y continuar">&times;</button>
+                </div>
+                <div class="popup-quiz-body">
+                    <h3 id="popup-quiz-title" class="serif popup-quiz-title">Título de la pregunta</h3>
+                    <p id="popup-quiz-text" class="popup-quiz-text">Enunciado de la pregunta...</p>
+                    
+                    <div class="quiz-options-container popup-quiz-options">
+                        <label class="quiz-option-card" id="popup-card-true">
+                            <input type="radio" name="popup-quiz-ans" value="true" id="popup-radio-true">
+                            <span class="custom-checkbox"></span>
+                            <span class="option-label-text">Verdadero</span>
+                        </label>
+                        <label class="quiz-option-card" id="popup-card-false">
+                            <input type="radio" name="popup-quiz-ans" value="false" id="popup-radio-false">
+                            <span class="custom-checkbox"></span>
+                            <span class="option-label-text">Falso</span>
+                        </label>
+                    </div>
+
+                    <div id="popup-quiz-feedback" class="quiz-feedback hidden"></div>
+                    <div id="popup-quiz-justification-box" class="popup-justification-box hidden">
+                        <div class="popup-justification-title">&#128161; Justificación académica:</div>
+                        <p id="popup-quiz-justification-text" class="popup-justification-text"></p>
+                    </div>
+                    <p id="popup-quiz-hint" class="popup-quiz-hint">Selecciona la respuesta correcta para habilitar el cierre (X) y avanzar al siguiente módulo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- POP-UP ADVERTENCIA AL CERRAR EVALUACIÓN INCOMPLETA -->
+        <div id="quiz-exit-warning-modal" class="modal hidden">
+            <div class="modal-content popup-quiz-content glass-panel" style="max-width: 560px; border-color: var(--orange-highlight);">
+                <div class="modal-header popup-quiz-header">
+                    <div class="popup-quiz-badge" style="color: var(--orange-highlight);">&#9888;&#65039; ADVERTENCIA DE EVALUACIÓN</div>
+                    <button id="btn-cancel-quiz-exit-x" class="close-btn popup-close-btn" title="Volver al cuestionario">&times;</button>
+                </div>
+                <div class="popup-quiz-body">
+                    <h3 class="serif popup-quiz-title" style="color: var(--orange-highlight);">Evaluación incompleta</h3>
+                    <p class="popup-quiz-text" style="color: var(--white); margin-bottom: 22px;">
+                        No has completado las respuestas completamente. En caso de continuar se reiniciará el módulo de las preguntas y no podrás avanzar hasta que no hayas completado el circuito de evaluación.
+                    </p>
+                    <div style="display: flex; gap: 15px; justify-content: flex-end; flex-wrap: wrap;">
+                        <button id="btn-stay-in-quiz" class="glow-btn">Volver a las preguntas</button>
+                        <button id="btn-confirm-quiz-exit" class="glow-btn" style="border-color: var(--orange-highlight); color: var(--orange-highlight);">Continuar y reiniciar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- PORTADA -->
         <section id="view-cover" class="view-section active fade-in">
-            <div class="content-panel left-panel">
+            <div class="content-panel left-panel cover-left-panel">
                 <div class="tag cyan-tag">OBJETO DIGITAL DE CONOCIMIENTO</div>
                 <h1 class="serif title-main">Soluciones IA para optimizar los procesos de selección de personal.</h1>
                 <div class="cover-info">
@@ -57,6 +111,7 @@
                     <div class="info-block">
                         <span class="orange-label">Institución:</span>
                         <p>Universidad de Cundinamarca.</p>
+                        <p class="cover-version">Versión: 1.0 &nbsp;·&nbsp; Año: 2026</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +157,7 @@
                             <input type="file" id="upload-module" class="file-input" accept="video/mp4">
                         </div>
                         <video id="video-module" class="avatar-video" loop muted playsinline>
-                            <source id="mod-video-source" src="" type="video/mp4">
+                            
                         </video>
                         <div class="video-controls">
                             <button class="ctrl-btn btn-play" data-target="video-module" title="Reproducir / Pausar">&#9654;</button>
@@ -138,11 +193,16 @@
                     </label>
                 </div>
 
-                <div id="quiz-feedback" class="quiz-feedback hidden" style="margin-bottom: 20px;"></div>
+                <div id="quiz-feedback" class="quiz-feedback hidden" style="margin-bottom: 14px;"></div>
+                <div id="quiz-justification-box" class="popup-justification-box hidden" style="margin-bottom: 20px;">
+                    <div class="popup-justification-title">&#128161; Justificación académica:</div>
+                    <p id="quiz-justification-text" class="popup-justification-text"></p>
+                </div>
                 
-                <div class="quiz-controls" style="display: flex; gap: 15px; margin-top: 10px;">
+                <div class="quiz-controls" style="display: flex; gap: 15px; margin-top: 10px; flex-wrap: wrap;">
                     <button id="quiz-btn-prev" class="glow-btn" style="display:none;">&#9664; Anterior</button>
-                    <button id="quiz-btn-next" class="glow-btn">Siguiente &#9654;</button>
+                    <button id="quiz-btn-next" class="glow-btn" disabled>Siguiente &#9654;</button>
+                    <button id="quiz-btn-continue-mod12" class="glow-btn" disabled style="border-color: var(--orange-highlight); color: var(--orange-highlight);">Continuar al Módulo 12 &#9654;</button>
                 </div>
             </div>
         </section>
