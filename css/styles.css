@@ -716,3 +716,72 @@ body { background-color: var(--navy-bg); color: var(--white); font-family: var(-
         order: 1;
     }
 }
+
+
+/* ========================================================
+   NOTAS ACADÉMICAS Y PIE DE FIGURAS EN MÓDULOS
+   ======================================================== */
+.mod1-note-block {
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+    padding: 10px 14px;
+    border-left: 3px solid var(--cyan-glow);
+    background: rgba(6, 52, 90, 0.45);
+    border-radius: 0 10px 10px 0;
+    flex-shrink: 0;
+}
+
+.mod1-note-text {
+    color: var(--gray-blue);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.mod1-note-label {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--cyan-glow);
+}
+
+.mod1-figure-wrapper {
+    width: 100%;
+    margin: auto 0 0 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.mod1-figure-wrapper .mod1-image-container {
+    margin: 0;
+}
+
+.mod1-figure-caption {
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--gray-blue);
+    text-align: center;
+    font-style: italic;
+    flex-shrink: 0;
+}
+
+.mod1-figure-label {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--orange-highlight);
+}
+
+@media (max-width: 1024px) {
+    .mod1-figure-wrapper {
+        flex-grow: 0;
+        margin-top: 12px;
+        margin-bottom: 8px;
+    }
+    .mod1-figure-wrapper .mod1-image-container {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

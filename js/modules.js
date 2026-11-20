@@ -63,8 +63,16 @@ const modulesData = [
                     <span class="mod1-highlight">Resultado clave:</span> Esta técnica tiene una precisión para encontrar candidatos adecuados <span class="mod1-bold">del 88%,</span> mucho mejor que menos del 17% que logra los filtros de palabras tradicionales.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo1.jpg" alt="Flujo Laboral Optimizado" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Elaborado a partir de la arquitectura de embeddings contextuales y rendimiento computacional evaluado por Ajjam y Al-Raweshidy (2026) y Bevara et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo1.jpg" alt="Figura 1. Representación esquemática de la transformación del flujo de selección manual a un pipeline automatizado." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 1.</span> Representación esquemática de la transformación del flujo de selección manual a un pipeline automatizado.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 1.mp4`
@@ -97,8 +105,16 @@ const modulesData = [
                     <span class="mod1-highlight">Confiabilidad técnica:</span> se alcanza un <span class="mod1-bold">96.8%</span> de exactitud en la identificación de competencias técnicas y certificaciones profesionales.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo2.jpg" alt="Ingesta y Parsing Multi-Formato" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Adaptado del modelo de extracción jerárquica con SpaCy NER y LLaMA 3 Zero-Shot propuesto por Myneni y Quadhari (2025) y Sato et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo2.jpg" alt="Figura 2. Diagrama conceptual del escáner de parsing multi-formato y extracción de entidades con SLMs locales." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 2.</span> Diagrama conceptual del escáner de parsing multi-formato y extracción de entidades con SLMs locales.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 2.mp4`
@@ -131,8 +147,16 @@ const modulesData = [
                     <span class="mod1-highlight">• Eficiencia Operativa:</span> Reducción del <span class="mod1-bold">70%</span> en el tiempo de elaboración y publicación de nuevas vacantes.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo3.jpg" alt="Crawling del Mercado y Ofertas" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Basado en el marco de alineación de oferta en tiempo real diseñado por Gauhl et al. (2025) y Rahman et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo3.jpg" alt="Figura 3. Esquema de interconexión entre agentes de crawling del mercado laboral y las taxonomías ESCO/O*NET." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 3.</span> Esquema de interconexión entre agentes de crawling del mercado laboral y las taxonomías ESCO/O*NET.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 3.mp4`
@@ -165,8 +189,16 @@ const modulesData = [
                     <span class="mod1-highlight">Latencia mínima:</span> capacidad de respuesta excepcional, con un tiempo de consulta de apenas <span class="mod1-bold">0.45 segundos</span> para la evaluación de cada 10.000 perfiles.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo4.jpg" alt="Filtrado Semántico Continuo" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Elaborado a partir del rendimiento del pipeline RAG sobre corpora masivos evaluado por Chafi et al. (2026) y Skondras et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo4.jpg" alt="Figura 4. Visualización tridimensional del espacio latente de embeddings vectoriales y búsqueda k-NN con FAISS." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 4.</span> Visualización tridimensional del espacio latente de embeddings vectoriales y búsqueda k-NN con FAISS.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 4.mp4`
@@ -199,8 +231,16 @@ const modulesData = [
                     <span class="mod1-highlight">Validación con expertos:</span> el sistema alcanza un <span class="mod1-bold">89.4%</span> de concordancia con los criterios de reclutadores senior, logrando además una reducción del <span class="mod1-bold">41%</span> en la tasa de falsos positivos.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo5.jpg" alt="Matching de Alta Precisión" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Basado en el modelo de proyección semántica en espacio latente diseñado por Kurek et al. (2024).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo5.jpg" alt="Figura 5. Arquitectura de Redes Neuronales Siamesas con pesos compartidos y cálculo de similitud coseno." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 5.</span> Arquitectura de Redes Neuronales Siamesas con pesos compartidos y cálculo de similitud coseno.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 5.mp4`
@@ -233,8 +273,16 @@ const modulesData = [
                     <span class="mod1-highlight">Experiencia del candidato:</span> logrando una puntuación de satisfacción del usuario CSAT del <span class="mod1-bold">91%</span> en procesos de preselección disponibles las 24 horas del día, los 7 días de la semana.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo6.jpg" alt="Entrevistas Automatizadas" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Adaptado del marco de interacción conversacional ética y análisis exclusivo de texto evaluado por El-Deeb et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo6.jpg" alt="Figura 6. Representación del agente virtual de entrevista y el escudo de cumplimiento de la EU AI Act." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 6.</span> Representación del agente virtual de entrevista y el escudo de cumplimiento de la EU AI Act.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 6.mp4`
@@ -267,8 +315,16 @@ const modulesData = [
                     <span class="mod1-highlight">Enfoque de evaluación holística:</span> síntesis equilibrada que contempla las habilidades blandas, la motivación vocacional y la compatibilidad con la cultura organizacional.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo7.jpg" alt="Perfilamiento Multi Agente" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Basado en el marco de validación psicométrica sobre 1.636 ocupaciones desarrollado por Han et al. (2026).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo7.jpg" alt="Figura 7. Diagrama de orquestación Multi Agente en LangGraph para el análisis psicométrico RIASEC y Big Five." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 7.</span> Diagrama de orquestación Multi Agente en LangGraph para el análisis psicométrico RIASEC y Big Five.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 7.mp4`
@@ -301,8 +357,16 @@ const modulesData = [
                     <span class="mod1-highlight">Eficiencia y ahorro organizacional:</span> reducción del <span class="mod1-bold">55%</span> en los costos de adquisición de talento, logrado a través de la optimización de estrategias de promoción y desarrollo interno.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo8.jpg" alt="Grafos Ocupacionales" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Adaptado del modelo de predicción de trayectoria con grafos de conocimiento temporal de Alqudah et al. (2025) y Łępicki et al. (2025).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo8.jpg" alt="Figura 8. Mapeo relacional de competencias, cargos e instituciones en una base en grafo Neo4j con GraphRAG." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 8.</span> Mapeo relacional de competencias, cargos e instituciones en una base en grafo Neo4j con GraphRAG.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 8.mp4`
@@ -335,8 +399,16 @@ const modulesData = [
                     <span class="mod1-highlight">Alta tasa de efectividad:</span> logro de un bloqueo exitoso del <span class="mod1-bold">96.2%</span> en la propagación de sesgos de índole sociodemográfico, garantizando procesos de IA más equitativos y confiables.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo9.jpg" alt="Gobernanza y Anti sesgos" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Basado en el protocolo de neutralización de discriminación implícita de Xu et al. (2026).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo9.jpg" alt="Figura 9. Esquema de auditoría continua anti sesgos con Bias-Corrective Memory Pool e Inferencia Bayesiana." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 9.</span> Esquema de auditoría continua anti sesgos con Bias-Corrective Memory Pool e Inferencia Bayesiana.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 9.mp4`
@@ -369,8 +441,16 @@ const modulesData = [
                     <span class="mod1-highlight">Fortalecimiento de la confianza organizacional:</span> incremento del <span class="mod1-bold">83%</span> en la tasa de adopción y validación de la herramienta por parte de gerentes de área y auditores de RR.HH.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo10.jpg" alt="Explicabilidad (XAI) & HITL" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Elaborado a partir de la arquitectura de explicabilidad híbrida para selección laboral de Dutta et al. (2026).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo10.jpg" alt="Figura 10. Panel transparente de atribución de puntuación mediante valores SHAP y LIME para el reclutador humano." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 10.</span> Panel transparente de atribución de puntuación mediante valores SHAP y LIME para el reclutador humano.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 10.mp4`
@@ -403,8 +483,16 @@ const modulesData = [
                     <span class="mod1-highlight">Aprendizaje activo:</span> implementación de modelos predictivos de retención que se nutren y ajustan de manera continua gracias a la retroalimentación constante sobre el desempeño.
                 </p>
             </div>
-            <div class="mod1-image-container">
-                <img src="assets/images/modulo11.jpg" alt="Onboarding y Retención" class="mod1-image">
+            <div class="mod1-note-block">
+                <p class="mod1-note-text">
+                    <span class="mod1-note-label">Nota.</span> Basado en los modelos de aprendizaje activo para prevención de rotación inicial de Alqudah et al. (2025) y Xu et al. (2026).
+                </p>
+            </div>
+            <div class="mod1-figure-wrapper">
+                <div class="mod1-image-container">
+                    <img src="assets/images/modulo11.jpg" alt="Figura 11. Dashboard de analítica predictiva de retención y curvas de inducción personalizada." class="mod1-image">
+                </div>
+                <p class="mod1-figure-caption"><span class="mod1-figure-label">Figura 11.</span> Dashboard de analítica predictiva de retención y curvas de inducción personalizada.</p>
             </div>
         `,
         avatarVideo: `assets/avatars/modulo 11.mp4`

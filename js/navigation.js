@@ -164,15 +164,18 @@ const Navigation = {
             video.style.opacity = '0';
         };
 
+        const playBtn = video.parentElement.querySelector('.btn-play');
+        if (playBtn) playBtn.innerHTML = '&#9654;'; // Reset to Play until playback starts
+
         video.load();
         const playPromise = video.play();
         
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                const playBtn = video.parentElement.querySelector('.btn-play');
-                if(playBtn) playBtn.innerHTML = '&#9208;'; // Pause
+                if (playBtn) playBtn.innerHTML = '&#9208;'; // Pause
             }).catch(error => {
-                if(error.name === 'NotSupportedError' || video.error) {
+                if (playBtn) playBtn.innerHTML = '&#9654;'; // Play
+                if (error.name === 'NotSupportedError' || video.error) {
                     placeholder.style.display = 'flex';
                     video.style.opacity = '0';
                 }
